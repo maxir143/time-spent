@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-time-spent-view',
@@ -6,12 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./time-spent-view.component.css']
 })
 
-export class TimeSpentViewComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+export class TimeSpentViewComponent  {
 
-  data = Array;
+  
+
+
+  constructor() { 
+  }
 
   getShift(date: Date, time:number){
     const startShift = new Date(date)
@@ -21,25 +22,8 @@ export class TimeSpentViewComponent implements OnInit {
     startShift.setHours(startShift.getHours() - (offset/60))
     endShift.setHours(startShift.getHours() + time)
 
-    return { startShift, endShift}
+    return {startShift, endShift}
 
-  }
-
-  fakeFetch () {
-    const {startShift, endShift} = this.getShift(new Date(), 8)
-    return (
-      [{
-        teleop_1: {
-          name: 'maximiliano',
-          startShift,
-          endShift
-        }
-      }]
-    )
-  }
-
-  constructor() { 
-    console.log(this.fakeFetch())
   }
 
 }
