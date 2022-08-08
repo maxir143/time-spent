@@ -1,0 +1,9 @@
+.todo-list {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.complete{
+  color: rgb(255, 8, 8);
+  text-decoration: line-through;
+}
