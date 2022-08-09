@@ -24,7 +24,11 @@
   </div>
   <ul class="list-group" *ngFor="let todo of todo_list; let i = index;">
       <li id="{{i}}" class="row list-group-item">
-        <input #input class=" col-7 {{todo.completed ? 'complete' : null}}" [defaultValue]="todo.content" (keyup)="edit_todo(input.value, i)" >
+        <input #input 
+          class=" col-7 {{todo.completed ? 'complete' : null}}" 
+          [defaultValue]="todo.content" 
+          (keyup)="edit_todo(input.value, i)"
+          [attr.disabled]="todo.completed ? '': null">
         <button (click)="toggleCompleted(i)" class="col-2 btn {{todo.completed ? 'btn-secondary' : 'btn-primary'}}">complete</button>
         <button (click)="delete_todo(i)" class="col-2 btn btn-danger" *ngIf="todo.completed">delete</button>
         
