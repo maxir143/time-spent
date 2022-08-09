@@ -8,18 +8,10 @@ import { Todo } from '../../models/Todo';
 })
 export class TodosComponent implements OnInit {
   inputTodo: string =''
-  todo_list: Array<Todo> = [
-    {
-      content: 'hola',
-      completed: false
-    },
-    {
-      content: 'hola 2',
-      completed: true
-    }
-  ]
+  todo_list: Array<Todo> = []
 
   add_todo(){
+    if (this.inputTodo.length <= 1)  return
     this.todo_list.push({
       content: this.inputTodo, 
       completed : false
@@ -27,14 +19,21 @@ export class TodosComponent implements OnInit {
     this.inputTodo = ''
   }
 
-  toggleCompleted(id:number){
+  edit_todo(content:string, index:number){
     this.todo_list.map((todo, i) => {
-      if (i === id) todo.completed = !todo.completed
+      if (content.length === 0) return this.delete_todo(index)
+      if (i === index) todo.content = content
+    })
+  }
+
+  toggleCompleted(index:number){
+    this.todo_list.map((todo, i) => {
+      if (i === index) todo.completed = !todo.completed
     }) 
   }
 
-  delete_todo(id:number){
-    this.todo_list = this.todo_list.filter((todo, i) => i !== id ) 
+  delete_todo(index:number){
+    this.todo_list = this.todo_list.filter((todo, i) => i !== index ) 
   }
 
   constructor() { }
